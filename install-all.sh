@@ -7,4 +7,7 @@ echo "📦 Installing backend..."
 echo "📦 Installing frontend..."
 ( cd frontend && npm install )
 
+echo "🦊 Installing Tailwind..."
+AND SO ON...
+
 echo "🎉 Done."
