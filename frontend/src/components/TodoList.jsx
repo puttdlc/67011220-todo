@@ -106,7 +106,7 @@ function TodoList({ username, onLogout }) {
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h2>Todo List for: {username}</h2>
+                <h2>To-do List for: {username}</h2>
                 <button onClick={handleLogout}>Logout</button>
             </div>
             

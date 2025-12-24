@@ -21,35 +21,35 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       {/* Top bar (only show when logged in) */}
-      {currentUser && (
         <header className="border-b border-slate-200 bg-white/70 backdrop-blur">
           <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4">
             <div className="flex items-center gap-3">
-              <div className="size-20 shrink-0 overflow-hidden rounded-xl">
-                <img
-                  src="/cei-logo.png"
-                  alt="CEI Logo"
-                  className="h-full w-full"
-                />
-              </div>
-
-              <div className="leading-tight">
-                <h1 className="h-5 font-semibold tracking-tight">
-                  Full Stack Todo
-                </h1>
-                <p className="text-sm text-slate-500">
-                  Simple to-do list for your daily needs.
-                </p>
-              </div>
+                <div className="size-20 shrink-0 overflow-hidden rounded-xl">
+                    <img
+                    src="/cei-logo.png"
+                    alt="CEI Logo"
+                    className="h-full w-full"
+                    />
+                </div>
+                {currentUser && (
+                    <div className="leading-tight">
+                    <h1 className="h-5 font-semibold tracking-tight">
+                    Full Stack Todo
+                    </h1>
+                    <p className="text-sm text-slate-500">
+                    Simple to-do list for your daily needs.
+                    </p>
+                </div>
+                )}
             </div>
-
+            {currentUser && (
             <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm">
               <span className="text-slate-500">Signed in as</span>
               <span className="font-medium">{currentUser}</span>
             </div>
+            )}
           </div>
         </header>
-      )}
 
       {/* Main content */}
       <main className="mx-auto w-full max-w-5xl px-4 py-10">
@@ -58,12 +58,12 @@ export default function App() {
           <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="mb-6">
               <h2 className="text-xl font-semibold tracking-tight">
-                {currentUser ? "Your tasks" : "Welcome back"}
+                {currentUser ? "Your tasks" : "Welcome back!"}
               </h2>
               <p className="mt-1 text-sm text-slate-500">
                 {currentUser
                   ? "Mark off tasks, or create new ones."
-                  : "Log in to access your todo list."}
+                  : "Login to access your to-do list."}
               </p>
             </div>
 
