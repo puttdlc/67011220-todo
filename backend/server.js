@@ -1,4 +1,5 @@
 // server.js
+require("dotenv").config();
 
 const express = require('express');
 const mysql = require('mysql2');
@@ -12,6 +13,7 @@ app.use(cors()); // Allow cross-origin requests from React frontend
 app.use(express.json()); // Enable reading JSON data from request body
 
 // --- MySQL Connection Setup ---
+
 const db = mysql.createConnection({
     host : process.env.DB_HOST,
     user : process.env.DB_USER,
