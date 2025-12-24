@@ -113,7 +113,7 @@ function TodoList({ username, onLogout }) {
             <form onSubmit={handleAddTodo}>
                 <input
                     type="text"
-                    placeholder="New Task"
+                    placeholder="Enter New Task here..."
                     value={newTask}
                     onChange={(e) => setNewTask(e.target.value)}
                 />
@@ -122,15 +122,57 @@ function TodoList({ username, onLogout }) {
 
             <ul>
                 {todos.map(todo => (
-                    <li key={todo.id} style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
+                    <li key={todo.id} className="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-2">
+                        {/* <input
+                            type="checkbox"
+                            checked={!!todo.done}
+                            onChange={() => handleToggleDone(todo.id, todo.done)}
+                            className="peer sr-only"
+                        /> */}
+
+                        <label className="flex cursor-pointer items-center gap-3">
                         <input
                             type="checkbox"
-                            checked={!!todo.done} // Convert MySQL's 0/1 to boolean
+                            checked={!!todo.done}
                             onChange={() => handleToggleDone(todo.id, todo.done)}
+                            className="peer sr-only"
                         />
-                        {todo.task} 
+
+                        <div className="
+                            flex h-5 w-5 items-center justify-center
+                            rounded-md border border-slate-300 bg-white
+                            transition
+                            peer-checked:border-emerald-500
+                            peer-checked:bg-emerald-500
+                        ">
+                            <svg
+                            className="h-3.5 w-3.5 text-white opacity-0 transition peer-checked:opacity-100"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            >
+                            <path d="M4 10l4 4 8-8" />
+                            </svg>
+                        </div>
+
+                        <span
+                            className={`text-sm ${
+                            todo.done ? "text-slate-400 line-through" : "text-slate-800"
+                            }`}
+                        >
+                            {todo.task}
+                        </span>
+                        </label>
+
                         <small> (Updated: {new Date(todo.updated).toLocaleString()})</small>
-                        <button onClick={() => handleDeleteTodo(todo.id)} style={{ marginLeft: '10px' }}>Delete</button>
+                        <button
+                        onClick={() => handleDeleteTodo(todo.id)}
+                        className="text-xs text-red-500 hover:text-red-600"
+                        >
+                        Delete
+                        </button>
+
                     </li>
                 ))}
             </ul>
