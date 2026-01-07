@@ -31,7 +31,7 @@ export default function App() {
                 </div>
                 <div className="leading-tight">
                 <h1 className="h-5 font-semibold tracking-tight">
-                Full Stack Todo
+                Full-Stack Todo
                 </h1>
                 <p className="text-sm text-slate-500">
                 Simple to-do list for your daily needs.
@@ -48,10 +48,8 @@ export default function App() {
         </header>
 
       {/* Main content */}
-      {/* Main content */}
         <main className="mx-auto w-full max-w-5xl px-4 py-10">
         {currentUser ? (
-            // ===== Logged in layout (keep your current style) =====
             <>
             <div className="grid gap-6 lg:grid-cols-[1fr,360px]">
                 <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -71,7 +69,6 @@ export default function App() {
             </footer>
             </>
         ) : (
-            // ===== Logged out (PRO login layout) =====
             <div className="mx-auto grid w-full max-w-4xl items-center gap-8 lg:grid-cols-2">
             {/* Left: Login card */}
             <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
@@ -86,7 +83,7 @@ export default function App() {
                 </div>
                 <div className="leading-tight">
                     <h1 className="text-lg font-semibold tracking-tight">
-                    Full Stack Todo
+                    Full-Stack Todo
                     </h1>
                     <p className="text-sm text-slate-500">
                     Sign in to continue
