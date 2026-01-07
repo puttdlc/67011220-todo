@@ -1,4 +1,3 @@
-// frontend/src/App.js
 import React, { useEffect, useState } from "react";
 import Login from "./components/Login";
 import TodoList from "./components/TodoList";
@@ -20,7 +19,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
-      {/* Top bar (only show when logged in) */}
         <header className="border-b border-slate-200 bg-white/70 backdrop-blur">
           <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4">
             <div className="flex items-center gap-3">
@@ -31,16 +29,14 @@ export default function App() {
                     className="h-full w-full"
                     />
                 </div>
-                {currentUser && (
-                    <div className="leading-tight">
-                    <h1 className="h-5 font-semibold tracking-tight">
-                    Full Stack Todo
-                    </h1>
-                    <p className="text-sm text-slate-500">
-                    Simple to-do list for your daily needs.
-                    </p>
+                <div className="leading-tight">
+                <h1 className="h-5 font-semibold tracking-tight">
+                Full Stack Todo
+                </h1>
+                <p className="text-sm text-slate-500">
+                Simple to-do list for your daily needs.
+                </p>
                 </div>
-                )}
             </div>
             {currentUser && (
             <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm">
@@ -52,33 +48,84 @@ export default function App() {
         </header>
 
       {/* Main content */}
-      <main className="mx-auto w-full max-w-5xl px-4 py-10">
-        <div className="grid gap-6 lg:grid-cols-[1fr,360px]">
-          {/* Primary card */}
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="mb-6">
-              <h2 className="text-xl font-semibold tracking-tight">
-                {currentUser ? "Your tasks" : "Welcome back!"}
-              </h2>
-              <p className="mt-1 text-sm text-slate-500">
-                {currentUser
-                  ? "Mark off tasks, or create new ones."
-                  : "Login to access your to-do list."}
-              </p>
+      {/* Main content */}
+        <main className="mx-auto w-full max-w-5xl px-4 py-10">
+        {currentUser ? (
+            // ===== Logged in layout (keep your current style) =====
+            <>
+            <div className="grid gap-6 lg:grid-cols-[1fr,360px]">
+                <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="mb-6">
+                    <h2 className="text-xl font-semibold tracking-tight">Your tasks</h2>
+                    <p className="mt-1 text-sm text-slate-500">
+                    Mark off tasks, or create new ones.
+                    </p>
+                </div>
+
+                <TodoList username={currentUser} onLogout={handleLogout} />
+                </section>
             </div>
 
-            {currentUser ? (
-              <TodoList username={currentUser} onLogout={handleLogout} />
-            ) : (
-              <Login onLogin={handleLogin} />
-            )}
-          </section>
-        </div>
+            <footer className="mt-10 text-center text-xs text-slate-500">
+                ID: 67011220 & Built with Vite + React + Tailwind CSS
+            </footer>
+            </>
+        ) : (
+            // ===== Logged out (PRO login layout) =====
+            <div className="mx-auto grid w-full max-w-4xl items-center gap-8 lg:grid-cols-2">
+            {/* Left: Login card */}
+            <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                <div className="grid size-11 place-items-center rounded-xl border border-slate-200 bg-slate-50">
+                    {/* Small logo/icon area */}
+                    <img
+                    src="/cei-logo.png"
+                    alt="CEI Logo"
+                    className="h-7 w-7 object-contain"
+                    />
+                </div>
+                <div className="leading-tight">
+                    <h1 className="text-lg font-semibold tracking-tight">
+                    Full Stack Todo
+                    </h1>
+                    <p className="text-sm text-slate-500">
+                    Sign in to continue
+                    </p>
+                </div>
+                </div>
 
-        <footer className="mt-10 text-center text-xs text-slate-500">
-          ID: 67011220 & Built with Vite + React + Tailwind CSS
-        </footer>
-      </main>
+                <Login onLogin={handleLogin} />
+
+            </section>
+
+            <aside className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+                <h2 className="text-base font-semibold tracking-tight">
+                About This App:
+                </h2>
+
+                <ul className="mt-4 space-y-3 text-sm text-slate-600">
+                <li className="flex gap-3">
+                    <span className="mt-0.5 inline-block size-2.5 shrink-0 rounded-full bg-slate-300" />
+                    Create tasks in seconds and keep everything organized.
+                </li>
+                <li className="flex gap-3">
+                    <span className="mt-0.5 inline-block size-2.5 shrink-0 rounded-full bg-slate-300" />
+                    Your login is remembered on this device until you log out.
+                </li>
+                </ul>
+
+                <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-500">
+                Tip: Use a consistent username so your tasks stay under one account.
+                </div>
+
+                <footer className="mt-6 text-center text-xs text-slate-500">
+                ID: 67011220 & Built with Vite + React + Tailwind CSS
+                </footer>
+            </aside>
+            </div>
+        )}
+        </main>
+
     </div>
   );
 }
